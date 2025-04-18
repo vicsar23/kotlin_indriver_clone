@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,7 +29,7 @@ fun DefaultButton(modifier: Modifier,
             .align(Alignment.Center)
             .width(height)
             .height(with), onClick = onClick, colors = ButtonDefaults.buttonColors(color)) {
-            Text(text = text, fontSize = 18.sp)
+            Text(text = text, fontSize = 18.sp, style = TextStyle(color =  Color.Black))
         }
     }
 }

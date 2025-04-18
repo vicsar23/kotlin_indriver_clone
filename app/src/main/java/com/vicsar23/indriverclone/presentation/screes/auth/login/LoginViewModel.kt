@@ -5,8 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import com.vicsar23.indriverclone.presentation.screes.auth.login.components.LoginState
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class LoginViewModel: ViewModel() {
+
+@HiltViewModel
+class LoginViewModel @Inject constructor(): ViewModel() {
     var state by mutableStateOf(LoginState())
         private set
 

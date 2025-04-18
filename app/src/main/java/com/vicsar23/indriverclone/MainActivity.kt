@@ -9,7 +9,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.vicsar23.indriverclone.presentation.navigation.graph.root.RootNavGraph
 import com.vicsar23.indriverclone.ui.theme.IndriverCloneTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController

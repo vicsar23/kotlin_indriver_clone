@@ -17,7 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
@@ -33,6 +35,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.vicsar23.indriverclone.R
@@ -42,9 +45,8 @@ import com.vicsar23.indriverclone.presentation.navigation.screens.auth.AuthScree
 import com.vicsar23.indriverclone.presentation.screes.auth.login.LoginViewModel
 
 @Composable
-fun LoginContent(navHostController: NavHostController, paddingValues: PaddingValues) {
-
-    val vm  : LoginViewModel = viewModel()
+fun LoginContent(navHostController: NavHostController, paddingValues: PaddingValues, vm: LoginViewModel = hiltViewModel()) {
+    val scrollState = rememberScrollState()
     val state = vm.state
 
     Box(
@@ -96,7 +98,8 @@ fun LoginContent(navHostController: NavHostController, paddingValues: PaddingVal
         )) {
         Column(modifier = Modifier
             .statusBarsPadding()
-            .padding(start = 30.dp)) {
+            .padding(start = 30.dp)
+            .verticalScroll(scrollState)) {
             Spacer(modifier = Modifier.height(20.dp))
             Text(text = "Bienvenido", fontSize = 30.sp, color = Color.White, fontWeight = FontWeight.Bold)
             Text(text = "de nuevo", fontSize = 30.sp, color = Color.White, fontWeight = FontWeight.Bold)
@@ -131,7 +134,7 @@ fun LoginContent(navHostController: NavHostController, paddingValues: PaddingVal
                 keyboardType = KeyboardType.Password,
                 label = "Contraseña",
             )
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(60.dp))
 
 
             DefaultButton(
