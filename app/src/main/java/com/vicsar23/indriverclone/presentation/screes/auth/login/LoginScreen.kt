@@ -2,6 +2,7 @@ package com.vicsar23.indriverclone.presentation.screes.auth.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -43,11 +44,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.vicsar23.indriverclone.R
 import com.vicsar23.indriverclone.presentation.components.DefaulTextField
+import com.vicsar23.indriverclone.presentation.navigation.screens.auth.AuthScreen
 
 @Composable
-fun LoginScreen() {
+fun LoginScreen(navHostController: NavHostController) {
 
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
@@ -77,7 +80,10 @@ fun LoginScreen() {
                 Spacer(modifier = Modifier.height(150.dp))
                 Text(text = "Registro", color = Color.White, fontSize = 27.sp,  modifier = Modifier
                     .rotate(degrees = 90f)
-                    .padding(top = 30.dp))
+                    .padding(top = 30.dp)
+                    .clickable {
+                        navHostController.navigate(route = AuthScreen.Register.route)
+                    })
                 Spacer(modifier = Modifier.height(150.dp))
 
             }
