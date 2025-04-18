@@ -1,6 +1,5 @@
 package com.vicsar23.indriverclone.presentation.navigation.graph.auth
 
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable

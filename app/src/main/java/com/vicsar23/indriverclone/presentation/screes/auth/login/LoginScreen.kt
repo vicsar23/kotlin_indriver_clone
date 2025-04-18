@@ -20,15 +20,10 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Email
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.vicsar23.indriverclone.R
 import com.vicsar23.indriverclone.presentation.components.DefaulTextField
+import com.vicsar23.indriverclone.presentation.components.DefaultButton
 import com.vicsar23.indriverclone.presentation.navigation.screens.auth.AuthScreen
 
 @Composable
@@ -142,14 +138,16 @@ fun LoginScreen(navHostController: NavHostController) {
                 )
                 Spacer(modifier = Modifier.weight(1f))
 
-                Box(Modifier.fillMaxWidth()) {
-                    Button(modifier = Modifier
-                        .align(Alignment.Center)
+
+                DefaultButton(
+                    modifier = Modifier
                         .width(200.dp)
-                        .height(45.dp), onClick = { /*TODO*/ }, colors = ButtonDefaults.buttonColors(Color.White)) {
-                        Text(text = "Iniciar sesión", fontSize = 18.sp)
-                    }
-                }
+                        .height(45.dp),
+                    onClick = { /*TODO*/ },
+                    color = Color.White,
+                        text = "Iniciar sesión")
+
+
                 Spacer(modifier = Modifier.height(30.dp))
 
                 Row(
@@ -175,7 +173,9 @@ fun LoginScreen(navHostController: NavHostController) {
                     horizontalArrangement = Arrangement.Center) {
                     Text(text = "¿No tienes cuenta?", fontSize = 17.sp, color = Color.White)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(text = "Regístrate", fontSize = 17.sp, color = Color.White, fontWeight = FontWeight.ExtraBold)
+                    Text(modifier = Modifier.clickable {
+                        navHostController.navigate(route = AuthScreen.Register.route)
+                    },text = "Regístrate", fontSize = 17.sp, color = Color.White, fontWeight = FontWeight.ExtraBold)
 
                 }
                 Spacer(modifier = Modifier.height(40.dp))
