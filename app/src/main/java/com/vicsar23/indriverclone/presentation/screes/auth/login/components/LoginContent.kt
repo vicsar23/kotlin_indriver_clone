@@ -23,10 +23,6 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Lock
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -37,16 +33,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.vicsar23.indriverclone.R
 import com.vicsar23.indriverclone.presentation.components.DefaulTextField
 import com.vicsar23.indriverclone.presentation.components.DefaultButton
 import com.vicsar23.indriverclone.presentation.navigation.screens.auth.AuthScreen
+import com.vicsar23.indriverclone.presentation.screes.auth.login.LoginViewModel
 
 @Composable
 fun LoginContent(navHostController: NavHostController, paddingValues: PaddingValues) {
-    var email by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+
+    val vm  : LoginViewModel = viewModel()
+    val state = vm.state
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -116,8 +116,8 @@ fun LoginContent(navHostController: NavHostController, paddingValues: PaddingVal
             Spacer(modifier = Modifier.height(30.dp))
             DefaulTextField(
                 modifier = Modifier,
-                value = email,
-                onValueChanged = { email = it},
+                value = state.email,
+                onValueChanged = { vm.onEmailInput(it)},
                 icon = Icons.Outlined.Email,
                 keyboardType = KeyboardType.Email,
                 label = "Email",
@@ -125,8 +125,8 @@ fun LoginContent(navHostController: NavHostController, paddingValues: PaddingVal
             Spacer(modifier = Modifier.height(30.dp))
             DefaulTextField(
                 modifier = Modifier,
-                value = password,
-                onValueChanged = { password = it},
+                value = state.password,
+                onValueChanged = { password -> vm.onPasswordInput(password)},
                 icon = Icons.Outlined.Lock,
                 keyboardType = KeyboardType.Password,
                 label = "Contraseña",
@@ -138,7 +138,9 @@ fun LoginContent(navHostController: NavHostController, paddingValues: PaddingVal
                 modifier = Modifier
                     .width(200.dp)
                     .height(45.dp),
-                onClick = { /*TODO*/ },
+                onClick = {
+                    vm.loginSubmit()
+                },
                 color = Color.White,
                 text = "Iniciar sesión")
 
