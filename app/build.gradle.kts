@@ -42,7 +42,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.9"
     }
     packaging {
         resources {
@@ -57,6 +57,12 @@ dependencies {
     //implementation(libs.androidx.hilt.hilt.z2)
     implementation(libs.androidx.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
+
+    // RETROFIT
+    implementation(libs.gson)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.navigation.compose)
