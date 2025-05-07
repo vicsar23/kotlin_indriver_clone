@@ -1,5 +1,6 @@
 package com.vicsar23.indriverclone.presentation.screes.auth.register.components
 
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,35 +28,39 @@ import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.vicsar23.indriverclone.R
 import com.vicsar23.indriverclone.presentation.components.DefaulOutlinedTextField
 import com.vicsar23.indriverclone.presentation.components.DefaultButton
+import com.vicsar23.indriverclone.presentation.screes.auth.login.LoginViewModel
+import com.vicsar23.indriverclone.presentation.screes.auth.register.RegisterViewModel
 
 @Composable
-fun RegisterContent(navHostController: NavHostController, paddingValues: PaddingValues) {
-    var email by remember { mutableStateOf("") }
-    var name by remember { mutableStateOf("") }
-    var lastName by remember { mutableStateOf("") }
-    var phone by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
-    var confirmPassword by remember { mutableStateOf("") }
-
+fun RegisterContent(navHostController: NavHostController, paddingValues: PaddingValues,
+                    vm: RegisterViewModel = hiltViewModel()
+) {
+    val state = vm.state
     val scrollState = rememberScrollState()
+
+    val context = LocalContext.current
+    LaunchedEffect(key1 = vm.errorMessage) {
+        if(vm.errorMessage.isNotEmpty()){
+            Toast.makeText(context, vm.errorMessage, Toast.LENGTH_LONG).show()
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -127,8 +132,8 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             Spacer(modifier = Modifier.height(10.dp))
             DefaulOutlinedTextField(
                 modifier = Modifier,
-                value = name,
-                onValueChanged = { name = it},
+                value = state.name,
+                onValueChanged = { vm.onNameInput(it)},
                 icon = Icons.Outlined.Person,
                 keyboardType = KeyboardType.Text,
                 label = "Nombre",
@@ -136,8 +141,8 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             Spacer(modifier = Modifier.height(20.dp))
             DefaulOutlinedTextField(
                 modifier = Modifier,
-                value = lastName,
-                onValueChanged = { lastName = it},
+                value = state.lastName,
+                onValueChanged = { vm.onLastNameInput(it)},
                 icon = Icons.Outlined.Person,
                 keyboardType = KeyboardType.Text,
                 label = "Apellido",
@@ -145,8 +150,8 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             Spacer(modifier = Modifier.height(20.dp))
             DefaulOutlinedTextField(
                 modifier = Modifier,
-                value = email,
-                onValueChanged = { email = it},
+                value = state.email,
+                onValueChanged = { vm.onEmailInput(it)},
                 icon = Icons.Outlined.Email,
                 keyboardType = KeyboardType.Email,
                 label = "Email",
@@ -154,8 +159,8 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             Spacer(modifier = Modifier.height(20.dp))
             DefaulOutlinedTextField(
                 modifier = Modifier,
-                value = phone,
-                onValueChanged = { phone = it},
+                value = state.phone,
+                onValueChanged = { vm.onPhoneInput(it)},
                 icon = Icons.Outlined.Phone,
                 keyboardType = KeyboardType.Number,
                 label = "Teléfono",
@@ -163,9 +168,10 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             Spacer(modifier = Modifier.height(20.dp))
             DefaulOutlinedTextField(
                 modifier = Modifier,
-                value = password,
-                onValueChanged = { password = it},
+                value = state.password,
+                onValueChanged = { vm.onPasswordInput(it)},
                 icon = Icons.Outlined.Lock,
+                hideText = true,
                 keyboardType = KeyboardType.Password,
                 label = "Contraseña",
             )
@@ -173,10 +179,10 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
             DefaulOutlinedTextField(
                 modifier = Modifier,
                 hideText = true,
-                value = confirmPassword,
-                onValueChanged = { confirmPassword = it},
-                icon = Icons.Outlined.Person,
-                keyboardType = KeyboardType.Email,
+                value = state.confirmPassword,
+                onValueChanged = { vm.onConfirmPasswordInput(it)},
+                icon = Icons.Outlined.Lock,
+                keyboardType = KeyboardType.Text,
                 label = "Confirmar Contraseña",
             )
             Spacer(modifier = Modifier.height(40.dp))
@@ -185,7 +191,7 @@ fun RegisterContent(navHostController: NavHostController, paddingValues: Padding
                 modifier = Modifier
                     .width(200.dp)
                     .height(45.dp),
-                onClick = { /*TODO*/ },
+                onClick = { vm.loginSubmit()},
                 color = Color.White,
                 text = "Crear usuario")
             Spacer(modifier = Modifier.height(30.dp))

@@ -33,7 +33,7 @@ fun DefaulOutlinedTextField(
     hideText:Boolean = false)
 {
     Box(modifier = modifier
-        .height(55.dp)
+        .height(65.dp)
         .background(
             color = Color.Transparent,
             shape = RoundedCornerShape(topStart = 16.dp, bottomEnd = 16.dp)
