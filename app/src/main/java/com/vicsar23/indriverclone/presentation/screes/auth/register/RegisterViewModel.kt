@@ -5,16 +5,25 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.vicsar23.indriverclone.domain.model.AuthResponse
+import com.vicsar23.indriverclone.domain.useCases.auth.AuthUseCases
+import com.vicsar23.indriverclone.domain.util.Resource
+import com.vicsar23.indriverclone.presentation.screes.auth.register.mapper.toUser
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(): ViewModel() {
+class RegisterViewModel @Inject constructor(private val authUseCase: AuthUseCases): ViewModel() {
     var state by mutableStateOf(RegisterState())
         private set
 
     var errorMessage by mutableStateOf(value = "")
+        private set
+
+    var registerResponse by mutableStateOf<Resource<AuthResponse>?>(null)
         private set
 
     fun onNameInput(name:String){
@@ -41,13 +50,19 @@ class RegisterViewModel @Inject constructor(): ViewModel() {
         state  = state.copy(confirmPassword = confirmPassword)
     }
 
-    fun  loginSubmit(){
-        if(!isValidForm() ) return;
-        Log.d("RegisterViewModel", "Name: ${state.name}")
-        Log.d("RegisterViewModel", "LastName: ${state.lastName}")
-        Log.d("RegisterViewModel", "Email: ${state.email}")
-        Log.d("RegisterViewModel", "Phone: ${state.phone}")
-        Log.d("RegisterViewModel", "Password: ${state.password}")
+    fun  loginSubmit() = viewModelScope.launch{
+        if(isValidForm()) {
+
+            registerResponse = Resource.Loading
+            val result = authUseCase.register(state.toUser())
+            registerResponse = result
+
+            Log.d("RegisterViewModel", "Name: ${state.name}")
+            Log.d("RegisterViewModel", "LastName: ${state.lastName}")
+            Log.d("RegisterViewModel", "Email: ${state.email}")
+            Log.d("RegisterViewModel", "Phone: ${state.phone}")
+            Log.d("RegisterViewModel", "Password: ${state.password}")
+        }
     }
 
     private fun isValidForm() : Boolean {
