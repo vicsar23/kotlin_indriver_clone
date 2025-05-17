@@ -16,8 +16,10 @@ loggingInterceptor = "4.12.0"
 navigationCompose = "2.8.9"
 daggerHilt = "2.46"
 retrofit = "2.11.0"
+firebaseMessaging = "24.0.0"
 
 [libraries]
+firebase-messaging = { module = "com.google.firebase:firebase-messaging", version.ref = "firebaseMessaging" }
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-hilt-hilt-z2 = { module = "androidx.hilt:hilt-*", version.ref = "androidxHiltZVersion" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "androidxHiltZVersion" }

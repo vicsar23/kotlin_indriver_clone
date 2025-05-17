@@ -1,0 +1,125 @@
+{
+  "project_info": {
+    "project_number": "1070622061859",
+    "firebase_url": "https://hola-firebase-acdce.firebaseio.com",
+    "project_id": "hola-firebase-acdce",
+    "storage_bucket": "hola-firebase-acdce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:5a1ea3e77b134cbc2ac896",
+        "android_client_info": {
+          "package_name": "com.companyname.mvvmg"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:dd8333254c4948fc2ac896",
+        "android_client_info": {
+          "package_name": "com.companyname.pasasqlfirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:b0d4cc9b57a9550e2ac896",
+        "android_client_info": {
+          "package_name": "com.dezeleven.food_course"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:c1c94a91f53d46292ac896",
+        "android_client_info": {
+          "package_name": "com.vicsar.delivery"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:b6ce3ccd0916d97a2ac896",
+        "android_client_info": {
+          "package_name": "com.vicsar.holafirebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1070622061859:android:275247ec92949f7c2ac896",
+        "android_client_info": {
+          "package_name": "com.vicsar23.indriverclone"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDETaTYXwpwn3JV1gGxT2Ik4J409ZKawRI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
